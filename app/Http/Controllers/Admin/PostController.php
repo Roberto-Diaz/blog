@@ -45,8 +45,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {                
-        dd($request);           
+    {                      
         $post = Post::create([
             'name'          => $request->name,
             'slug'          => Str::slug($request->name),

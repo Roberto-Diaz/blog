@@ -57,8 +57,8 @@
                                 <div>
                                   <label class="block text-sm font-medium text-gray-700">Etiquetas</label> 
                                   @foreach ($tags as $tag)
-                                    <label class="inline-flex items-center">
-                                      <input type="checkbox" id="{{ $tag->name }}" class="form-checkbox" name="tags" value="{{ $tag->id}}"> 
+                                    <label class="inline-flex items-center">  
+                                      <input type="checkbox" id="{{ $tag->name }}" class="form-checkbox" name="tags[]" value="{{ $tag->id}}"> 
                                       <span class="ml-2">{{ $tag->name }}</span>      
                                     </label>                                           
                                   @endforeach 
