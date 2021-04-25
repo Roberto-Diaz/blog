@@ -23,8 +23,7 @@
                           @csrf
                           <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-white sm:p-6">
-                              <div class="grid grid-cols-6 gap-6">  
-                                <input type="hidden" name="id" value="{{ $categories->id }}" id="id">       
+                              <div class="grid grid-cols-6 gap-6">   
                                 <div class="col-span-12 sm:col-span-12"> 
                                   <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                                   <input type="text" name="name" value="{{ $categories->name }}" id="first_name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
