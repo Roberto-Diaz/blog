@@ -14,8 +14,8 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $tags = Tag::all();             
+    {   
+        $tags = Tag::orderBy('id','desc')->get();                   
         return view('admin.tag', compact('tags'));          
     }
 

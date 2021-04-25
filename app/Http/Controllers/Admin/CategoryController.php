@@ -14,10 +14,10 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $categories = Category::all();      
+    {       
+        $categories = Category::orderBy('id','desc')->get();                
         return view('admin.category', compact('categories'));      
-    }
+    }   
 
     /**
      * Show the form for creating a new resource.
