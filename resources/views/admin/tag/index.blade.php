@@ -11,22 +11,7 @@
             {{ __('Add') }}                 
         </a>        
     </div>
-    </x-slot>   
-
-    @if (session('status'))
-    <div x-data="{ show: true }" x-show="show"
-        class="flex justify-between items-center bg-green-200 relative text-green-600 py-3 px-3 rounded-lg">
-        <div>   
-            <span class="font-semibold text-green-700">{{ session('status') }}</span>
-        </div>  
-        <div>
-            <button type="button" @click="show = false" class=" text-green-700">
-                <span class="text-2xl">&times;</span>
-            </button>   
-        </div>      
-    </div>
-    @endif 
-        
+    </x-slot>       
 
     <div class="py-12"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

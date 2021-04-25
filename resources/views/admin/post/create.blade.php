@@ -13,21 +13,7 @@
         </a>        
     </div>          
     </x-slot>   
-
-    @if (session('status'))
-    <div x-data="{ show: true }" x-show="show"
-        class="flex justify-between items-center bg-red-200 relative text-red-600 py-3 px-3 rounded-lg">
-        <div>           
-            <span class="font-semibold text-red-700">{{ session('status') }}</span>
-        </div>  
-        <div>
-            <button type="button" @click="show = false" class=" text-red-700">
-                <span class="text-2xl">&times;</span>
-            </button>   
-        </div>      
-    </div>
-    @endif 
-
+    
   <div class="py-12"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
