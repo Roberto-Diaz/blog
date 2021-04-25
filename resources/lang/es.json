@@ -37,6 +37,9 @@
     "Categories list": "Listado de categorias",
     "Tag" : "Etiqueta",
     "Tags" : "Etiquetas",   
-    "Tags list" : "Listado de etiquetas"    
+    "Tags list" : "Listado de etiquetas",    
+    "Post" : "Publicación",
+    "Posts" : "Publicaciones",   
+    "Posts list" : "Listado de publicaciones"   
         
 }   

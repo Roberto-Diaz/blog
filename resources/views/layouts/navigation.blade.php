@@ -20,7 +20,10 @@
                     </x-nav-link>     
                     <x-nav-link :href="route('tags')" :active="request()->routeIs('tags')">
                         {{ __('Tags') }}                           
-                    </x-nav-link>           
+                    </x-nav-link>   
+                    <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
+                        {{ __('Posts') }}                            
+                    </x-nav-link>                   
                 </div>  
             </div>  
 
@@ -72,7 +75,16 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
+            <x-responsive-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
+                {{ __('Categories') }}                      
+            </x-responsive-nav-link>    
+            <x-responsive-nav-link :href="route('tags')" :active="request()->routeIs('tags')">
+                {{ __('Tags') }}                           
+            </x-responsive-nav-link>   
+            <x-responsive-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
+                {{ __('Posts') }}                            
+            </x-responsive-nav-link>
+        </div>          
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
