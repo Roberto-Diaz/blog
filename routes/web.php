@@ -28,6 +28,8 @@ Route::get('/categorias', [CategoryController::class, 'index'])->middleware(['au
 Route::get('/etiquetas', [TagController::class, 'index'])->middleware(['auth'])->name('tags');              
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts');                
 
-    
+Route::get('/categorias/crear', [CategoryController::class, 'create'])->middleware(['auth'])->name('categories.create'); 
+Route::post('/categorias/store', [CategoryController::class, 'store'])->middleware(['auth'])->name('categories.store');     
+
 
 require __DIR__.'/auth.php';

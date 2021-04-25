@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -26,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');   
     }
 
     /**
@@ -37,7 +38,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ]); 
+        if($result){                            
+            return redirect('categorias')->with('status', 'Se registro exitasamente la categoria!');
+        }else{                          
+            return redirect('categorias/crear')->with('status', 'Error al registrar la categoria!');            
+        }   
     }
 
     /**
