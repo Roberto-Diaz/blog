@@ -29,5 +29,17 @@
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.",
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
-    "All rights reserved.":  "Todos los derechos reservados."
+    "All rights reserved.":  "Todos los derechos reservados.",
+    "New" : "Nuevo",
+    "Add" : "Agregar",
+    "Category": "Categoria",
+    "Categories": "Categorias",         
+    "Categories list": "Listado de categorias",
+    "Tag" : "Etiqueta",
+    "Tags" : "Etiquetas",   
+    "Tags list" : "Listado de etiquetas",    
+    "Post" : "Publicación",
+    "Posts" : "Publicaciones",   
+    "Posts list" : "Listado de publicaciones"   
+        
 }   
