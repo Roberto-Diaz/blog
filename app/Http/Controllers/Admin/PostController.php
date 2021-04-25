@@ -45,7 +45,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {                     
+    {                      
         $post = Post::create([
             'name'          => $request->name,
             'slug'          => Str::slug($request->name),
@@ -113,6 +113,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);  
+        $result = $post->delete();      
+
+        if($post->image){
+            Storage::delete($post->image->url);
+            $post->image->delete();     
+        }
+
+
+        if($result){                            
+            return redirect('publicaciones')->with('status', 'Se elimino exitosamente la publicación!');
+        }else{                          
+            return redirect('publicaciones')->with('status', 'Error al eliminar la publicación!');            
+        }  
     }
 }
