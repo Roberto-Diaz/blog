@@ -39,7 +39,8 @@ Route::post('/publicaciones/store', [PostController::class, 'store'])->middlewar
 
 Route::get('/categorias/eliminar/{id}', [CategoryController::class, 'destroy'])->middleware(['auth'])->name('categories.destroy'); 
 Route::get('/etiquetas/eliminar/{id}', [TagController::class, 'destroy'])->middleware(['auth'])->name('tags.destroy');  
-
+Route::get('/publicaciones/eliminar/{id}', [PostController::class, 'destroy'])->middleware(['auth'])->name('posts.destroy');  
+    
         
 
 require __DIR__.'/auth.php';
