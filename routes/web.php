@@ -26,12 +26,16 @@ Route::get('/dashboard', function () {
 
 Route::get('/categorias', [CategoryController::class, 'index'])->middleware(['auth'])->name('categories'); 
 Route::get('/etiquetas', [TagController::class, 'index'])->middleware(['auth'])->name('tags');              
-Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts');                
+Route::get('/publicaciones', [PostController::class, 'index'])->middleware(['auth'])->name('posts');                
 
 Route::get('/categorias/crear', [CategoryController::class, 'create'])->middleware(['auth'])->name('categories.create'); 
 Route::post('/categorias/store', [CategoryController::class, 'store'])->middleware(['auth'])->name('categories.store');     
 
 Route::get('/etiquetas/crear', [TagController::class, 'create'])->middleware(['auth'])->name('tags.create'); 
 Route::post('/etiquetas/store', [TagController::class, 'store'])->middleware(['auth'])->name('tags.store');         
+
+Route::get('/publicaciones/crear', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create'); 
+Route::post('/publicaciones/store', [PostController::class, 'store'])->middleware(['auth'])->name('posts.store');         
+
 
 require __DIR__.'/auth.php';

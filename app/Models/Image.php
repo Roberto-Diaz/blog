@@ -9,6 +9,7 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     //Relación polimorfica inversa
     public function imageable(){
         return $this->morphTo();            
