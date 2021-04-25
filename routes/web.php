@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
-    
+use App\Http\Controllers\Admin\TagController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,8 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/categorias', [CategoryController::class, 'index'])->middleware(['auth'])->name('categorias'); 
+Route::get('/categorias', [CategoryController::class, 'index'])->middleware(['auth'])->name('categories'); 
+Route::get('/etiquetas', [TagController::class, 'index'])->middleware(['auth'])->name('tags');              
 
-
+    
 
 require __DIR__.'/auth.php';

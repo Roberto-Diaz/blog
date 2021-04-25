@@ -30,8 +30,13 @@
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
     "All rights reserved.":  "Todos los derechos reservados.",
-    "Category": "Categoria",
-    "Categories list": "Listado de categorias",     
     "New" : "Nuevo",
-    "Add" : "Agregar"
+    "Add" : "Agregar",
+    "Category": "Categoria",
+    "Categories": "Categorias",         
+    "Categories list": "Listado de categorias",
+    "Tag" : "Etiqueta",
+    "Tags" : "Etiquetas",   
+    "Tags list" : "Listado de etiquetas"    
+        
 }   
