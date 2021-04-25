@@ -32,14 +32,19 @@
     "All rights reserved.":  "Todos los derechos reservados.",
     "New" : "Nuevo",
     "Add" : "Agregar",
+    "Back" : "Regresar",    
+    "Save" : "Guardar",        
     "Category": "Categoria",
     "Categories": "Categorias",         
     "Categories list": "Listado de categorias",
+    "Add category": "Agregar categoria",            
     "Tag" : "Etiqueta",
     "Tags" : "Etiquetas",   
-    "Tags list" : "Listado de etiquetas",    
+    "Tags list" : "Listado de etiquetas", 
+    "Add tag": "Agregar categoria",      
     "Post" : "Publicación",
     "Posts" : "Publicaciones",   
-    "Posts list" : "Listado de publicaciones"   
+    "Posts list" : "Listado de publicaciones",
+    "Add post": "Agregar publicación"   
         
 }   

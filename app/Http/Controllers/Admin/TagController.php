@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -16,7 +17,7 @@ class TagController extends Controller
     public function index()
     {   
         $tags = Tag::orderBy('id','desc')->get();                   
-        return view('admin.tag', compact('tags'));          
+        return view('admin.tag.index', compact('tags'));            
     }
 
     /**
@@ -26,7 +27,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tag.create');   
     }
 
     /**
@@ -37,7 +38,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = Tag::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ]); 
+        if($result){                            
+            return redirect('etiquetas')->with('status', 'Se registro exitosamente la etiqueta!');
+        }else{                          
+            return redirect('etiquetas/crear')->with('status', 'Error al registrar la etiqueta!');            
+        }           
     }
 
     /**
