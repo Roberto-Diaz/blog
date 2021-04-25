@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Throwable;
 
 class TagController extends Controller
 {
@@ -68,7 +69,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tags = Tag::findOrFail($id);           
+        return view('admin.tag.edit', compact('tags'));
     }
 
     /**
@@ -80,7 +82,14 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $tags = Tag::findOrFail($id);    
+            $tags->update($request->all());       
+            return redirect('etiquetas')->with('success', 'Se actualizo exitosamente la etiqueta!');       
+        } catch (Throwable $e) {                    
+            return redirect('etiquetas')->with('error', 'Error al actualizar la etiqueta!'.$e);            
+        }   
+        
     }
 
     /**

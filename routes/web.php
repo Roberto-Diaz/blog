@@ -45,7 +45,10 @@ Route::get('/publicaciones/eliminar/{id}', [PostController::class, 'destroy'])->
 Route::get('/categorias/editar/{id}', [CategoryController::class, 'edit'])->middleware(['auth'])->name('categories.edit');   
 Route::post('/categorias/modificar/{id}', [CategoryController::class, 'update'])->middleware(['auth'])->name('categories.update');          
 
-    
+
+Route::get('/etiquetas/editar/{id}', [TagController::class, 'edit'])->middleware(['auth'])->name('tags.edit');   
+Route::post('/etiquetas/modificar/{id}', [TagController::class, 'update'])->middleware(['auth'])->name('tags.update');          
+        
         
 
 require __DIR__.'/auth.php';
