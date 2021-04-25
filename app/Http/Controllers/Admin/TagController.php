@@ -91,6 +91,12 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);            
+        $result = $tag->delete();      
+        if($result){                            
+            return redirect('etiquetas')->with('status', 'Se elimino exitosamente la etiqueta!');
+        }else{                          
+            return redirect('etiquetas')->with('status', 'Error al eliminar la etiqueta!');            
+        }  
     }
 }

@@ -38,6 +38,8 @@ Route::get('/publicaciones/crear', [PostController::class, 'create'])->middlewar
 Route::post('/publicaciones/store', [PostController::class, 'store'])->middleware(['auth'])->name('posts.store');         
 
 Route::get('/categorias/eliminar/{id}', [CategoryController::class, 'destroy'])->middleware(['auth'])->name('categories.destroy'); 
+Route::get('/etiquetas/eliminar/{id}', [TagController::class, 'destroy'])->middleware(['auth'])->name('tags.destroy');  
+
         
 
 require __DIR__.'/auth.php';
