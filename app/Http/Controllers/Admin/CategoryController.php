@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Throwable;
 
 class CategoryController extends Controller
 {
@@ -43,9 +44,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]); 
         if($result){                            
-            return redirect('categorias')->with('status', 'Se registro exitosamente la categoria!');
+            return redirect('categorias')->with('success', 'Se registro exitosamente la categoria!');
         }else{                          
-            return redirect('categorias/crear')->with('status', 'Error al registrar la categoria!');            
+            return redirect('categorias/crear')->with('error', 'Error al registrar la categoria!');            
         }   
     }
 
@@ -68,7 +69,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::findOrFail($id);    
+        return view('admin.category.edit', compact('categories'));
     }
 
     /**
@@ -80,7 +82,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $categories = Category::findOrFail($id);    
+            $categories->update($request->all());       
+            return redirect('categorias')->with('success', 'Se actualizo exitosamente la categoria!');       
+        } catch (Throwable $e) {                    
+            return redirect('categorias')->with('error', 'Error al actualizar la categoria!'.$e);            
+        }   
+        
     }
 
     /**
@@ -94,9 +103,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);  
         $result = $category->delete();      
         if($result){                            
-            return redirect('categorias')->with('status', 'Se elimino exitosamente la categoria!');
+            return redirect('categorias')->with('success', 'Se elimino exitosamente la categoria!');
         }else{                          
-            return redirect('categorias')->with('status', 'Error al eliminar la categoria!');            
+            return redirect('categorias')->with('error', 'Error al eliminar la categoria!');            
         }  
     }
 }

@@ -40,6 +40,11 @@ Route::post('/publicaciones/store', [PostController::class, 'store'])->middlewar
 Route::get('/categorias/eliminar/{id}', [CategoryController::class, 'destroy'])->middleware(['auth'])->name('categories.destroy'); 
 Route::get('/etiquetas/eliminar/{id}', [TagController::class, 'destroy'])->middleware(['auth'])->name('tags.destroy');  
 Route::get('/publicaciones/eliminar/{id}', [PostController::class, 'destroy'])->middleware(['auth'])->name('posts.destroy');  
+
+
+Route::get('/categorias/editar/{id}', [CategoryController::class, 'edit'])->middleware(['auth'])->name('categories.edit');   
+Route::post('/categorias/modificar/{id}', [CategoryController::class, 'update'])->middleware(['auth'])->name('categories.update');          
+
     
         
 

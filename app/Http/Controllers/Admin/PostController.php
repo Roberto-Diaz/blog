@@ -25,7 +25,7 @@ class PostController extends Controller
         $posts = Post::orderBy('id','desc')->paginate(10);                                 
         return view('admin.post.index', compact('posts'));  
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -65,9 +65,9 @@ class PostController extends Controller
 
         }               
         if($post){                            
-            return redirect('publicaciones')->with('status', 'Se registro exitosamente la publicación!');
+            return redirect('publicaciones')->with('success', 'Se registro exitosamente la publicación!');
         }else{                          
-            return redirect('publicaciones/crear')->with('status', 'Error al registrar la publicación!');            
+            return redirect('publicaciones/crear')->with('error', 'Error al registrar la publicación!');            
         }   
     }
 
@@ -123,9 +123,9 @@ class PostController extends Controller
 
 
         if($result){                            
-            return redirect('publicaciones')->with('status', 'Se elimino exitosamente la publicación!');
+            return redirect('publicaciones')->with('success', 'Se elimino exitosamente la publicación!');
         }else{                          
-            return redirect('publicaciones')->with('status', 'Error al eliminar la publicación!');            
+            return redirect('publicaciones')->with('error', 'Error al eliminar la publicación!');            
         }  
     }
 }
