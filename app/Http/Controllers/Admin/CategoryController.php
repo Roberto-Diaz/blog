@@ -43,7 +43,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]); 
         if($result){                            
-            return redirect('categorias')->with('status', 'Se registro exitasamente la categoria!');
+            return redirect('categorias')->with('status', 'Se registro exitosamente la categoria!');
         }else{                          
             return redirect('categorias/crear')->with('status', 'Error al registrar la categoria!');            
         }   

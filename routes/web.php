@@ -31,5 +31,7 @@ Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->na
 Route::get('/categorias/crear', [CategoryController::class, 'create'])->middleware(['auth'])->name('categories.create'); 
 Route::post('/categorias/store', [CategoryController::class, 'store'])->middleware(['auth'])->name('categories.store');     
 
+Route::get('/etiquetas/crear', [TagController::class, 'create'])->middleware(['auth'])->name('tags.create'); 
+Route::post('/etiquetas/store', [TagController::class, 'store'])->middleware(['auth'])->name('tags.store');         
 
 require __DIR__.'/auth.php';
