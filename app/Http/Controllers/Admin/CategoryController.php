@@ -69,8 +69,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::findOrFail($id);    
-        return view('admin.category.edit', compact('categories'));
+        $category = Category::findOrFail($id);      
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -83,8 +83,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $categories = Category::findOrFail($id);    
-            $categories->update($request->all());       
+            $category = Category::findOrFail($id);    
+            $category->update($request->all());             
             return redirect('categorias')->with('success', 'Se actualizo exitosamente la categoria!');       
         } catch (Throwable $e) {                    
             return redirect('categorias')->with('error', 'Error al actualizar la categoria!'.$e);            

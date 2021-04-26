@@ -69,8 +69,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tags = Tag::findOrFail($id);           
-        return view('admin.tag.edit', compact('tags'));
+        $tag = Tag::findOrFail($id);                
+        return view('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -81,10 +81,10 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         try {
-            $tags = Tag::findOrFail($id);    
-            $tags->update($request->all());       
+            $tag = Tag::findOrFail($id);            
+            $tag->update($request->all());       
             return redirect('etiquetas')->with('success', 'Se actualizo exitosamente la etiqueta!');       
         } catch (Throwable $e) {                    
             return redirect('etiquetas')->with('error', 'Error al actualizar la etiqueta!'.$e);            
