@@ -43,5 +43,15 @@ class Post extends Model
     public function image(){    
         return $this->morphOne(Image::class, 'imageable');
     }           
+
+    public function contains($id){
+        $flag = false;
+        foreach ($this->tags as $tag) {
+            if($tag->id == $id){
+                $flag = true;
+            }       
+        }
+        return $flag;
+    }
     
 }   

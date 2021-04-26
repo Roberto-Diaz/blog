@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
-
+use Throwable;
 
 class PostController extends Controller
 {
@@ -25,7 +24,7 @@ class PostController extends Controller
         $posts = Post::orderBy('id','desc')->paginate(10);                                 
         return view('admin.post.index', compact('posts'));  
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -65,9 +64,9 @@ class PostController extends Controller
 
         }               
         if($post){                            
-            return redirect('publicaciones')->with('status', 'Se registro exitosamente la publicación!');
+            return redirect('publicaciones')->with('success', 'Se registro exitosamente la publicación!');
         }else{                          
-            return redirect('publicaciones/crear')->with('status', 'Error al registrar la publicación!');            
+            return redirect('publicaciones/crear')->with('error', 'Error al registrar la publicación!');            
         }   
     }
 
@@ -90,8 +89,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $post = Post::findOrFail($id);     
+        $categories = Category::orderBy('name','desc')->get();    
+        $tags = Tag::orderBy('name','desc')->get();   
+        return view('admin.post.edit', compact('post','categories','tags'));    
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -102,7 +104,42 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $post = Post::findOrFail($id);                  
+            $post->update([
+                'name'          => $request->name,
+                'slug'          => Str::slug($request->name),
+                'category_id'   => $request->category_id,
+                'user_id'       => Auth::user()->id,
+                'extract'       => $request->extract,   
+                'body'          => $request->body,      
+                'status'        => $request->status
+            ]);    
+            
+            if($request->file('image')){
+                $url = Storage::put('posts', $request->file('image'));
+
+                if($post->image){
+                    Storage::delete($post->image->url);
+                    $post->image->update([
+                        'url'   => $url
+                    ]);
+                }else{
+                    $post->image()->create([
+                        'url' => $url
+                    ]);
+                }   
+            }
+
+            if($request->tags){
+                $post->tags()->attach($request->tags);
+                
+            }   
+
+            return redirect()->route('posts.edit',$post)->with('success', 'Se actualizo exitosamente la publicación!');       
+        } catch (Throwable $e) {                                
+            return redirect()->route('posts.edit', $post)->with('error', 'Error al actualizar la publicación!'.$e);            
+        }   
     }
 
     /**
@@ -123,9 +160,9 @@ class PostController extends Controller
 
 
         if($result){                            
-            return redirect('publicaciones')->with('status', 'Se elimino exitosamente la publicación!');
+            return redirect('publicaciones')->with('success', 'Se elimino exitosamente la publicación!');
         }else{                          
-            return redirect('publicaciones')->with('status', 'Error al eliminar la publicación!');            
+            return redirect('publicaciones')->with('error', 'Error al eliminar la publicación!');            
         }  
     }
 }

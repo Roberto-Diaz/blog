@@ -40,7 +40,17 @@ Route::post('/publicaciones/store', [PostController::class, 'store'])->middlewar
 Route::get('/categorias/eliminar/{id}', [CategoryController::class, 'destroy'])->middleware(['auth'])->name('categories.destroy'); 
 Route::get('/etiquetas/eliminar/{id}', [TagController::class, 'destroy'])->middleware(['auth'])->name('tags.destroy');  
 Route::get('/publicaciones/eliminar/{id}', [PostController::class, 'destroy'])->middleware(['auth'])->name('posts.destroy');  
-    
+
+
+Route::get('/categorias/editar/{id}', [CategoryController::class, 'edit'])->middleware(['auth'])->name('categories.edit');   
+Route::post('/categorias/modificar/{id}', [CategoryController::class, 'update'])->middleware(['auth'])->name('categories.update');          
+
+Route::get('/etiquetas/editar/{id}', [TagController::class, 'edit'])->middleware(['auth'])->name('tags.edit');   
+Route::post('/etiquetas/modificar/{id}', [TagController::class, 'update'])->middleware(['auth'])->name('tags.update');  
+
+Route::get('/publicaciones/editar/{id}', [PostController::class, 'edit'])->middleware(['auth'])->name('posts.edit');   
+Route::post('/publicaciones/modificar/{id}', [PostController::class, 'update'])->middleware(['auth'])->name('posts.update');          
+        
         
 
 require __DIR__.'/auth.php';

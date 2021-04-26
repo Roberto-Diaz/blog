@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Throwable;
 
 class TagController extends Controller
 {
@@ -43,9 +44,9 @@ class TagController extends Controller
             'slug' => Str::slug($request->name)
         ]); 
         if($result){                            
-            return redirect('etiquetas')->with('status', 'Se registro exitosamente la etiqueta!');
+            return redirect('etiquetas')->with('success', 'Se registro exitosamente la etiqueta!');
         }else{                          
-            return redirect('etiquetas/crear')->with('status', 'Error al registrar la etiqueta!');            
+            return redirect('etiquetas/crear')->with('error', 'Error al registrar la etiqueta!');            
         }           
     }
 
@@ -68,7 +69,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::findOrFail($id);                
+        return view('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -79,8 +81,15 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        try {
+            $tag = Tag::findOrFail($id);            
+            $tag->update($request->all());       
+            return redirect('etiquetas')->with('success', 'Se actualizo exitosamente la etiqueta!');       
+        } catch (Throwable $e) {                    
+            return redirect('etiquetas')->with('error', 'Error al actualizar la etiqueta!'.$e);            
+        }   
+        
     }
 
     /**
@@ -94,9 +103,9 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id);            
         $result = $tag->delete();      
         if($result){                            
-            return redirect('etiquetas')->with('status', 'Se elimino exitosamente la etiqueta!');
+            return redirect('etiquetas')->with('success', 'Se elimino exitosamente la etiqueta!');
         }else{                          
-            return redirect('etiquetas')->with('status', 'Error al eliminar la etiqueta!');            
-        }  
+            return redirect('etiquetas')->with('error', 'Error al eliminar la etiqueta!');            
+        }   
     }
 }
