@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
-
+use Throwable;
 
 class PostController extends Controller
 {
@@ -90,8 +89,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $post = Post::findOrFail($id);     
+        $categories = Category::orderBy('name','desc')->get();    
+        $tags = Tag::orderBy('name','desc')->get();   
+        return view('admin.post.edit', compact('post','categories','tags'));    
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -102,7 +104,41 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $post = Post::findOrFail($id);                  
+            $post->update([
+                'name'          => $request->name,
+                'slug'          => Str::slug($request->name),
+                'category_id'   => $request->category_id,
+                'user_id'       => Auth::user()->id,
+                'extract'       => $request->extract,   
+                'body'          => $request->body,  
+            ]);    
+            
+            if($request->file('image')){
+                $url = Storage::put('posts', $request->file('image'));
+
+                if($post->image){
+                    Storage::delete($post->image->url);
+                    $post->image->update([
+                        'url'   => $url
+                    ]);
+                }else{
+                    $post->image()->create([
+                        'url' => $url
+                    ]);
+                }   
+            }
+
+            if($request->tags){
+                $post->tags()->attach($request->tags);
+                
+            }   
+
+            return redirect()->route('posts.edit',$post)->with('success', 'Se actualizo exitosamente la publicación!');       
+        } catch (Throwable $e) {                                
+            return redirect()->route('posts.edit', $post)->with('error', 'Error al actualizar la publicación!'.$e);            
+        }   
     }
 
     /**

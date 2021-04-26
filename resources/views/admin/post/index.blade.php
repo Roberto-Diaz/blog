@@ -104,9 +104,9 @@
                                     {{ $post->created_at }}    
                                 </td>               
                                 <td class="px-6 py-4 whitespace-nowrap"> 
-                                    <button type="button" class="inline-flex items-center px-4 py-2 border border-current rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Editar</button>   
+                                    <a type="button" href="{{route('posts.edit', $post->id)}}" class="inline-flex items-center px-4 py-2 border border-current rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Editar</a>       
                                     <a type="button" href="{{route('posts.destroy', $post->id)}}" class="inline-flex items-center px-4 py-2 border border-current rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Eliminar</a>
-                                </td>               
+                                </td>                   
                                 </tr>                                      
                             @endforeach                            
                             </tbody>                                
