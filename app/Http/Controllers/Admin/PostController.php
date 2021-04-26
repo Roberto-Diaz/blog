@@ -112,7 +112,8 @@ class PostController extends Controller
                 'category_id'   => $request->category_id,
                 'user_id'       => Auth::user()->id,
                 'extract'       => $request->extract,   
-                'body'          => $request->body,  
+                'body'          => $request->body,      
+                'status'        => $request->status
             ]);    
             
             if($request->file('image')){
